@@ -5,36 +5,16 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import static org.lwjgl.opengl.GL11.*;
+import static helpers.Artist.*;
 
 public class Boot {
 	
 	public Boot() {
-		Display.setTitle("Spencer's Game");
-		try {
-			Display.setDisplayMode(new DisplayMode(600, 400));
-			Display.create();
-		} catch (LWJGLException e) {
-			e.printStackTrace();
-		}
 		
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0, 600, 400, 0, 1, -1);
-		glMatrixMode(GL_MODELVIEW);
+		BeginSession();
 		
 		while(!Display.isCloseRequested()) {
-			glBegin(GL_LINES);
-			glVertex2f(10, 10);
-			glVertex2f(100, 100);
-			glEnd();
-			
-			glBegin(GL_QUADS);
-			glVertex2f(100, 100);
-			glVertex2f(150, 100);
-			glVertex2f(150, 150);
-			glVertex2f(100, 150);
-			glEnd();
-			
+			DrawQuad(50, 50, 100, 100);
 			Display.update();
 			Display.sync(60);
 		}
